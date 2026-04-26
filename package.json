@@ -1,0 +1,27 @@
+{
+  "name": "yajsc-repo-proj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "uimode": "npx playwright test --ui",
+    "report": "npx playwright show report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altmirl/yajsc-repo-proj.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/altmirl/yajsc-repo-proj/issues"
+  },
+  "homepage": "https://github.com/altmirl/yajsc-repo-proj#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  }
+}
