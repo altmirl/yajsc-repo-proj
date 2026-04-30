@@ -1,16 +1,18 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage.page';
+import { AccountPage } from '../pages/AccountPage.page';
 
 test('Verify login with valid credentials', async ({ page }) => {
-  await page.goto('https://practicesoftwaretesting.com/auth/login');
+  test.skip(!!process.env.CI, 'Skipped on CI because of Cloudflare protection');
 
-  await page.getByTestId('email').fill("customer@practicesoftwaretesting.com");
-  await page.getByTestId('password').fill("welcome01");
-  await page.getByRole('button', { name: 'Login' }).click();
+  const loginPage = new LoginPage(page);
+  const accountPage = new AccountPage(page);
 
-  // Expect url
-  await expect(page).toHaveURL('https://practicesoftwaretesting.com/account');
-  //Expect page title is "My Account"
-  await expect(page.getByTestId('page-title')).toHaveText('My Account', { ignoreCase: true });
-  //Expect username
-  await expect(page.getByTestId('nav-menu')).toHaveText('Jane Doe');
+  await page.goto('/auth/login');
+  await loginPage.performLogin('customer2@practicesoftwaretesting.com', 'welcome01');
+  //await page.waitForURL('/account', { timeout: 10000 });
+
+  await expect(page).toHaveURL('/account');
+  await expect(accountPage.pageTitle).toHaveText('My Account', { ignoreCase: true });
+  await expect(accountPage.header.navMenu).toHaveText('Jack Howe');
 });
