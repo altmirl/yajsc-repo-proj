@@ -10,7 +10,6 @@ test('Verify login with valid credentials', async ({ page }) => {
 
   await page.goto('/auth/login');
   await loginPage.performLogin('customer2@practicesoftwaretesting.com', 'welcome01');
-  //await page.waitForURL('/account', { timeout: 10000 });
 
   await expect(page).toHaveURL('/account');
   await expect(accountPage.pageTitle).toHaveText('My Account', { ignoreCase: true });
