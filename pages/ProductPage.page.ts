@@ -1,6 +1,5 @@
 import { Locator, Page } from '@playwright/test';
 import { HeaderFragment } from './HeaderFragment.page';
-
 export class ProductPage {
     readonly page: Page;
     readonly header: HeaderFragment;
@@ -8,6 +7,7 @@ export class ProductPage {
     readonly UnitPrice: Locator;
     readonly addToCartButton: Locator;
     readonly addToFavoritesButton: Locator;
+    readonly toasterAlert: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -16,5 +16,10 @@ export class ProductPage {
         this.UnitPrice = page.getByTestId('unit-price');
         this.addToCartButton = page.getByTestId('add-to-cart');
         this.addToFavoritesButton = page.getByTestId('add-to-favorites');
+        this.toasterAlert = page.getByRole('alert');
+    }
+
+    async addToCard(): Promise<void> {
+        await this.addToCartButton.click();
     }
 }
