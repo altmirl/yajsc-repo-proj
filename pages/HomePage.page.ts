@@ -23,6 +23,12 @@ export enum Other {
     SafetyGear = 'Safety Gear',
     Fasteners = 'Fasteners',
 }
+export enum SortOptions {
+    NameAsc = 'name,asc',
+    NameDesc = 'name,desc',
+    PriceAsc = 'price,asc',
+    PriceDesc = 'price,desc'
+}
 export class HomePage {
     readonly page: Page;
     readonly header: HeaderFragment;
@@ -44,17 +50,8 @@ export class HomePage {
     async openProductDetails(name: string): Promise<void> {
         await this.product.filter({ hasText: name }).click();
     }
-    async sortByNameASC(): Promise<void> {
-        await this.sortIcon.selectOption('name,asc');
-    }
-    async sortByNameDESC(): Promise<void> {
-        await this.sortIcon.selectOption('name,desc');
-    }
-    async sortByPriceASC(): Promise<void> {
-        await this.sortIcon.selectOption('price,asc');
-    }
-    async sortByPriceDESC(): Promise<void> {
-        await this.sortIcon.selectOption('price,desc');
+    async sortBy(param: SortOptions): Promise<void> {
+        await this.sortIcon.selectOption(param);
     }
     async getProductList(): Promise<string[]> {
         return await this.product.allTextContents();

@@ -1,28 +1,28 @@
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../pages/HomePage.page';
+import { HomePage, SortOptions } from '../pages/HomePage.page';
 
 [
     {
         testName: "by Name ASC",
-        sortAction: (homePage: HomePage) => homePage.sortByNameASC(),
+        sortAction: (homePage: HomePage) => homePage.sortBy(SortOptions.NameAsc),
         getValues: (homePage: HomePage) => homePage.getProductList(),
         sort: (a: string, b: string) => a.localeCompare(b),
     },
     {
         testName: "by Name DESC",
-        sortAction: (homePage: HomePage) => homePage.sortByNameDESC(),
+        sortAction: (homePage: HomePage) => homePage.sortBy(SortOptions.NameDesc),
         getValues: (homePage: HomePage) => homePage.getProductList(),
         sort: (a: string, b: string) => b.localeCompare(a),
     },
     {
         testName: "by Price ASC",
-        sortAction: (homePage: HomePage) => homePage.sortByPriceASC(),
+        sortAction: (homePage: HomePage) => homePage.sortBy(SortOptions.PriceAsc),
         getValues: (homePage: HomePage) => homePage.getProductPrices(),
         sort: (a: number, b: number) => a - b,
     },
     {
         testName: "by Price DESC",
-        sortAction: (homePage: HomePage) => homePage.sortByPriceDESC(),
+        sortAction: (homePage: HomePage) => homePage.sortBy(SortOptions.PriceDesc),
         getValues: (homePage: HomePage) => homePage.getProductPrices(),
         sort: (a: number, b: number) => b - a,
     },

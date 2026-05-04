@@ -11,7 +11,7 @@ test('Verify user can view product details', async ({ page }) => {
 
     await expect(page).toHaveURL(/\/product\//);
     await expect(productPage.productName).toHaveText('Combination Pliers');
-    await expect(productPage.UnitPrice).toHaveText('14.15');
+    await expect(productPage.unitPrice).toHaveText('14.15');
     await expect(productPage.addToCartButton).toBeVisible();
     await expect(productPage.addToFavoritesButton).toBeVisible();
 });
