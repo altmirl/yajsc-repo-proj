@@ -1,6 +1,5 @@
 import { Locator, Page } from '@playwright/test';
 import { HeaderFragment } from './HeaderFragment.page';
-
 export class LoginPage {
     readonly page: Page;
     readonly header: HeaderFragment;
@@ -15,11 +14,7 @@ export class LoginPage {
         this.passwordField = page.getByTestId('password');
         this.loginButton = page.getByTestId('login-submit');
     }
-
-    async openLogin(): Promise<void> {
-        await this.header.navigateToLogin;
-    }
-
+    
     async performLogin(email: string, password: string): Promise<void> {
         await this.emailField.fill(email);
         await this.passwordField.fill(password);

@@ -36,11 +36,31 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    { name: 'auth', testMatch: /auth-setup\.spec\.ts/ },
+
+    {
+      name: 'chromium-user',
+      grep: /@user/,
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright/.auth/user.json'
+      },
+      dependencies: ['auth']
+    },
+    {
+      name: 'chromium-admin',
+      grep: /@admin/,
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright/.auth/admin.json'
+      },
+      dependencies: ['auth'],
+    },
     {
       name: 'chromium',
+      testIgnore: [/auth-setup\.spec\.ts/, /login.*\.spec\.ts/],
       use: { ...devices['Desktop Chrome'] },
     },
-
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
