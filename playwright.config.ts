@@ -43,18 +43,18 @@ export default defineConfig({
       grep: /@user/,
       use: {
         ...devices['Desktop Chrome'],
-        storageState: 'playwright/.auth/user.json'
+        //storageState: 'playwright/.auth/user.json'
       },
-      dependencies: ['auth']
+      //dependencies: ['auth']
     },
     {
       name: 'chromium-admin',
       grep: /@admin/,
       use: {
         ...devices['Desktop Chrome'],
-        storageState: 'playwright/.auth/admin.json'
+       // storageState: 'playwright/.auth/admin.json'
       },
-      dependencies: ['auth'],
+      //dependencies: ['auth'],
     },
     {
       name: 'chromium',
