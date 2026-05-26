@@ -1,5 +1,6 @@
-import { test, expect } from '@playwright/test';
-import { HomePage, SortOptions } from '../pages/HomePage.page';
+import { expect } from '@playwright/test';
+import { test } from '../fixtures/app';
+import { SortOptions, type HomePage } from '../pages/HomePage.page';
 
 [
     {
@@ -27,13 +28,11 @@ import { HomePage, SortOptions } from '../pages/HomePage.page';
         sort: (a: number, b: number) => b - a,
     },
 ].forEach(testData =>
-    test(`Verify user can perform sorting ${testData?.testName}`, async ({ page }) => {
-        const homePage = new HomePage(page);
+    test(`Verify user can perform sorting ${testData?.testName}`, async ({ allPages }) => {
+        await allPages.homePage.openHomePage();
+        await testData.sortAction(allPages.homePage);
 
-        await homePage.openHomePage();
-        await testData.sortAction(homePage);
-
-        const values = await testData.getValues(homePage);
+        const values = await testData.getValues(allPages.homePage);
 
         const expectedValues = [...values].sort(testData.sort);
 
