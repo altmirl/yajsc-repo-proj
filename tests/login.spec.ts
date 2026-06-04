@@ -3,7 +3,7 @@ import { AccountPage } from '../pages/AccountPage.page';
 import { DashboardPage } from '../pages/DashboardPage.page'
 
 test.describe('User login', () => {
-  test.use({ storageState: 'playwright/.auth/user.json' });
+  test.use({ storageState: process.env.CI ? undefined : 'playwright/.auth/user.json' });
 
   test('Verify login with valid credentials @user', async ({ page }) => {
     test.skip(!!process.env.CI, 'Skipped on CI because of Cloudflare protection');
@@ -19,7 +19,7 @@ test.describe('User login', () => {
 });
 
 test.describe('Admin login', () => {
-  test.use({ storageState: 'playwright/.auth/admin.json' });
+  test.use({ storageState: process.env.CI ? undefined : 'playwright/.auth/admin.json' });
 
   test('Verify admin login with valid credentials @admin', async ({ page }) => {
     test.skip(!!process.env.CI, 'Skipped on CI because of Cloudflare protection');
