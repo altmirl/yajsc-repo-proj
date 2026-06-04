@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { defineConfig, devices } from '@playwright/test';
 
-process.loadEnvFile();
+if (!process.env.CI) process.loadEnvFile();
 
 /**
  * See https://playwright.dev/docs/test-configuration.

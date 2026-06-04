@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import path from 'path';
 import { LoginPage } from '../pages/LoginPage.page';
 
-process.loadEnvFile();
+if (!process.env.CI) process.loadEnvFile();
 
 const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 const adminFile = path.join(__dirname, '../playwright/.auth/admin.json');

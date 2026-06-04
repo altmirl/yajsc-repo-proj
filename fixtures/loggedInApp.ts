@@ -2,7 +2,7 @@ import { test as base } from '../fixtures/app';
 import { AllPages } from '../pages/AllPages';
 import { expect } from '@playwright/test';
 
-process.loadEnvFile();
+if (!process.env.CI) process.loadEnvFile();
 
 type LoggedInApp = {
     loggedInPage: AllPages;
