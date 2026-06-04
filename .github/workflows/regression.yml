@@ -1,11 +1,10 @@
-name: Playwright Tests
+name: Regression Tests
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1-5'
 jobs:
-  test:
+  regression:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -17,8 +16,8 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test
+    - name: Run Regression tests
+      run: npx playwright test --grep @regression
       env:
         BASE_URL: ${{ secrets.BASE_URL }}
         API_LOGIN_URL: ${{ secrets.API_LOGIN_URL }}
@@ -29,6 +28,6 @@ jobs:
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: playwright-report
+        name: regression-report
         path: playwright-report/
         retention-days: 30

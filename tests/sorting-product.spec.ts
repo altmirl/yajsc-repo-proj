@@ -28,13 +28,13 @@ import { SortOptions, type HomePage } from '../pages/HomePage.page';
         sort: (a: number, b: number) => b - a,
     },
 ].forEach(testData =>
-    test(`Verify user can perform sorting ${testData?.testName}`, async ({ allPages }) => {
+    test(`Verify user can perform sorting ${testData?.testName}`, { tag: '@regression' }, async ({ allPages }) => {
         await allPages.homePage.openHomePage();
         await testData.sortAction(allPages.homePage);
 
         const values = await testData.getValues(allPages.homePage);
 
-        const expectedValues = [...values].sort(testData.sort);
+        const expectedValues = [...values].sort(testData.sort as (a: string | number, b: string | number) => number);
 
         expect(values).toEqual(expectedValues);
     })

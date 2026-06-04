@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/app';
 import { PowerTools } from '../pages/HomePage.page';
 
-test('Verify user can filter products by category', async ({ allPages, page }) => {
+test('Verify user can filter products by category', { tag: '@regression' }, async ({ allPages, page }) => {
     const category = PowerTools.Sander;
 
     await allPages.homePage.openHomePage();

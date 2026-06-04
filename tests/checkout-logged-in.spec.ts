@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/loggedInApp';
 import { PaymentMethods } from '../pages/PaymentPage.page';
 
-test('Verify logged in user can complete checkout', async ({ loggedInPage, page }) => {
+test('Verify logged in user can complete checkout', { tag: '@regression' }, async ({ loggedInPage, page }) => {
     await loggedInPage.homePage.openHomePage();
 
     const productName = await loggedInPage.homePage.product.first().textContent() ?? '';
