@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/app';
 
-test('Verify user can add product to cart', async ({ allPages, page }) => {
+test('Verify user can add product to cart', { tag: '@smoke' }, async ({ allPages, page }) => {
     const product = 'Slip Joint Pliers';
 
     // Click on the product "Slip Joint Pliers"

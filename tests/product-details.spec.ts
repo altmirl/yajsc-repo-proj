@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/app';
 
-test('Verify user can view product details', async ({ allPages, page }) => {
+test('Verify user can view product details', { tag: '@smoke' }, async ({ allPages, page }) => {
     await allPages.homePage.openHomePage();
     await allPages.homePage.openProductDetails('Combination Pliers');
 
