@@ -10,7 +10,7 @@ type LoggedInApp = {
 
 export const test = base.extend<LoggedInApp>({
     loggedInPage: async ({ allPages, page, request }, use) => {
-        const resp = await request.post('https://api.practicesoftwaretesting.com/users/login', {
+        const resp = await request.post(process.env.API_LOGIN_URL as string, {
             data: {
                 email: process.env.USER_EMAIL,
                 password: process.env.USER_PASSWORD,
